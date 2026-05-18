@@ -23,7 +23,7 @@ jobs:
           python-version: '3.11'
 
       - run: |
-          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
           pip install pytest pytest-cov
 
       - name: Run tests with coverage
@@ -46,7 +46,7 @@ jobs:
         with:
           repository: mohamedamine050/data_eng
           token: ${{ secrets.GH_TOKEN }}
-          fetch-depth: 0  # <--- INDISPENSABLE pour le Quality Gate (info de blame)
+          fetch-depth: 0
       - name: Download coverage report
         uses: actions/download-artifact@v4
         with:
@@ -54,16 +54,16 @@ jobs:
           path: .
       - name: Verify coverage file
         run: |
-          echo '=== Checking workspace ===' 
+          echo '=== Checking workspace ==='
           ls -la
           if [ -f coverage.xml ]; then
             echo '✓ Coverage report found'
-            echo '=== Verifying paths in coverage.xml ===' 
+            echo '=== Verifying paths in coverage.xml ==='
             if grep -q '/home/runner/work' coverage.xml; then
               echo '⚠ WARNING: Still contains absolute paths, fixing...'
               sed -i 's|/home/runner/work/data_eng/data_eng/||g' coverage.xml
             fi
-            echo '=== Coverage file (first 10 lines) ===' 
+            echo '=== Coverage file (first 10 lines) ==='
             head -10 coverage.xml
           else
             echo '✗ ERROR: coverage.xml not found!'
@@ -89,7 +89,7 @@ jobs:
       - name: Checkout Terraform Repo
         uses: actions/checkout@v4
         with:
-          repository: mohamedamine050/terraform-project_amine_123-1e73de59
+          repository: mohamedamine050/terraform-test_ghaith-85818a6e
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Configure AWS Credentials
