@@ -89,7 +89,7 @@ jobs:
       - name: Checkout Terraform Repo
         uses: actions/checkout@v4
         with:
-          repository: mohamedamine050/terraform-test_aws_glue_s3-b99ab204
+          repository: mohamedamine050/terraform-test_aws_glue_s3-2da04f58
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Configure AWS Credentials
