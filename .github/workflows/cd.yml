@@ -22,7 +22,7 @@ jobs:
       - name: Checkout Terraform Repo
         uses: actions/checkout@v4
         with:
-          repository: mohamedamine050/terraform-test_aws_glue_s3-b99ab204
+          repository: mohamedamine050/terraform-test_aws_glue_s3-2da04f58
           token: ${{ secrets.GH_TOKEN }}
           path: terraform
 
@@ -71,7 +71,7 @@ jobs:
 
       - name: Upload dependencies to S3
         run: |
-          aws s3 cp dependencies.zip s3://tfstate-test-aws-glue-s3-3ntafd7z/dependencies.zip
+          aws s3 cp dependencies.zip s3://tfstate-test-aws-glue-s3-9ojkdh26/dependencies.zip
 
       - name: Debug S3 path
         run: |
@@ -91,7 +91,7 @@ jobs:
       # ─────────────────────────────
       - name: Trigger Glue Jobs
         run: |
-          CONFIG_BUCKET="tfstate-test-aws-glue-s3-3ntafd7z"
+          CONFIG_BUCKET="tfstate-test-aws-glue-s3-9ojkdh26"
           CONFIG_PATH="s3://${CONFIG_BUCKET}/config.json"
           DEPS_PATH="s3://${CONFIG_BUCKET}/dependencies.zip"
 
